@@ -101,6 +101,24 @@ After upload, the package page should be available at:
 
 https://pypi.org/project/Redkite/
 
+### GitHub Actions publishing
+
+This repository includes a GitHub Actions workflow at `.github/workflows/publish.yml`.
+
+It runs when:
+
+- a maintainer starts it manually from the Actions tab with `workflow_dispatch`
+- a version tag matching `v*` is pushed, such as `v0.1.0`
+
+Before running the workflow:
+
+1. In GitHub, go to repository **Settings** > **Environments**.
+2. Create an environment named `Redkite`.
+3. Add an environment secret named `PYPI_TOKEN`.
+4. Set `PYPI_TOKEN` to the PyPI API token for the `InteralDigital` account.
+
+The publish job uses the `Redkite` environment and exposes that secret to Twine as the `PYPI_TOKEN` environment variable.
+
 ## Versioning releases
 
 Before every release, update the version in `pyproject.toml`.
